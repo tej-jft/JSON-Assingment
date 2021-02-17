@@ -25,7 +25,6 @@ function editModal(){
 }
 
 function addRecord(){
-  alert("invoked");
   let rid=document.getElementById("rid").value;
   let name=document.getElementById("name").value;
   let email=document.getElementById("inputEmail4").value;
