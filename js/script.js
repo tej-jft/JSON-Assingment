@@ -20,6 +20,7 @@ function deleteRecord() {
   delete resData[id];
   console.log[resData];
 }
+<<<<<<< HEAD
 function updRecord() {}
 
 function addRecord() {
@@ -37,6 +38,29 @@ function addRecord() {
     address: {
       city: city,
     },
+=======
+function editModal(){
+
+
+
+}
+
+function addRecord(){
+  let rid=document.getElementById("rid").value;
+  let name=document.getElementById("name").value;
+  let email=document.getElementById("inputEmail4").value;
+  let username=document.getElementById("inputUsername").value;
+  let city=document.getElementById("inputCity").value;
+
+  let nr ={
+    "id":rid,
+    "name":name,
+    "username":username,
+    "email":email,
+    "address":{
+    "city":city,
+    }
+>>>>>>> 2c5d0b7beedbbc9e28796dd0cf717e98051e6218
   };
   console.log(nr);
   if (
