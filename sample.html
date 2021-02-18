@@ -48,3 +48,46 @@
     </div>
 </body>
 </html>
+
+
+/* Style the header */
+.header-foot {
+  padding: 10px 16px;
+  background: #555;
+  color: #f1f1f1;
+}
+
+/* Page content */
+.content-foot {
+  padding: 16px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky-foot {
+  position: fixed;
+  bottom:0px;
+  width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky-foot + .content-foot {
+  padding-bottom: 51px;
+}
+
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunctionfooter()};
+
+// Get the header
+var header-foot = document.getElementById("myHeader-foot");
+
+// Get the offset position of the navbar
+var sticky = header-foot.offsetBottom;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky-foot");
+  } else {
+    header-foot.classList.remove("sticky-foot");
+  }
+}
