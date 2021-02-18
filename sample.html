@@ -91,3 +91,13 @@ function myFunction() {
     header-foot.classList.remove("sticky-foot");
   }
 }
+
+
+let updateId = document.getElementById("recordId").value;
+let dataIn = JSON.parse(localStorage.getItem("dataIn"));
+const filteredRecord = dataIn.filter((data) => data.id == updateId);
+const indexOfItemToDelete = dataIn.indexOf(filteredRecord[0]);
+document.getElementById("updatename").value=dataIn[indexOfItemToDelete].name ;
+document.getElementById("updateEmail").value=dataIn[indexOfItemToDelete].email;
+document.getElementById("updateUsername").value=dataIn[indexOfItemToDelete].username;
+document.getElementById("updateCity").value=dataIn[indexOfItemToDelete].address.city;

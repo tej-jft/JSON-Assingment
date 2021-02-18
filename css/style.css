@@ -63,11 +63,16 @@ td {
   height: fit-content;
   text-align: justify;
 }
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
+footer {
   z-index: 40;
+  background-color: rgba(56, 155, 221, 0.952);
+  height: 5%;
+  color: #ddd;
+}
+.foot-con {
+  background-color: #1c1f1c93;
+  font-size: 18px;
+  padding: 5px 0px;
 }
 
 /* Style the header */

@@ -73,7 +73,7 @@
           <input type="hidden" id="recordId" value="" />
           <div class="clearfix">
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn mdbutton ">Cancel</button>
-            <button type="button" onclick="deleteRecord()" class="deletebtn mdbutton " id="debut" name="deBut">Delete</button>
+            <button type="button" onclick="deleteRecord()" class="deletebtn mdbutton " id="debut" >Delete</button>
           </div>
         </div>
       </form>
@@ -81,31 +81,31 @@
     <!--END Modal Box Delete--> 
     <!--Modal for updating records-->
     <div id="upmdl" class="modal">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+      <span onclick="document.getElementById('upmdl').style.display='none'" class="close" title="Close Modal">×</span>
       <form class="modal-content">
         <div class="mdcontain">
           <h1>Update Record</h1>
           <p>Upadte Record and click Save</p>
-          <input type="hidden" id="upRcordId" value="" />
+          <input type="hidden" id="upRecordId" value="" />
           <div class="clearfix">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name" required>
+                <input type="text" class="form-control" id="updatename" placeholder="Name" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                <input type="email" class="form-control" id="updateEmail" placeholder="Email" required>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="inputUsername" placeholder="Username" required>
+                <input type="text" class="form-control" id="updateUsername" placeholder="Username" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="City" required>
+                <input type="text" class="form-control" id="updateCity" placeholder="City" required>
               </div>
             </div>
             <div class="form-row">
@@ -113,7 +113,7 @@
                 <button type="button" onclick="document.getElementById('upmdl').style.display='none'" class="updcancelbtn mdbutton ">Cancel</button>    
               </div>
               <div class="form-group col-md-6">
-                <button type="button" onclick="updRecord()" class="updatebtn mdbutton btn btn-success" id="debut" name="deBut">Update</button>
+                <button type="button" onclick="updRecord()" class="updatebtn mdbutton btn btn-success" >Update</button>
               </div>
             </div>
           </div>
@@ -121,9 +121,24 @@
       </form>
     </div>
     <!--End Modal for updating records-->
-    <footer class="fixed-bottom">
+    <!--General Alert Box-->
+    <div id="customalert" class="modal">
+      <span onclick="document.getElementById('customalert').style.display='none'" class="close" title="Close Modal">×</span>
+      <form class="modal-content" action="/action_page.php">
+        <div class="mdcontain">
+          <h1>Alert</h1>
+          <p id="alert-msg">Message</p>
+          <input type="hidden" id="recordId" value="" />
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('customalert').style.display='none'" class="cancelbtn mdbutton ">OK</button>
+          </div>
+        </div>
+      </form>
+      </div>
+    <!--End General Alert Box-->
+    <footer class="fixed-bottom" style="position:fixed;bottom:0;width:100%">
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">© 2021 Copyright:<a class="text-dark" href="#">  || JSON Assingment</a></div>
+        <div class="text-center p-3 foot-con" >© 2021 Copyright: || JSON Assingment</div>
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
