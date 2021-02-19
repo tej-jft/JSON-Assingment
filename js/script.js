@@ -4,7 +4,7 @@ window.onscroll = function () {
 
 var navbar = document.getElementById("navbar");
 var sticky = navbar.offsetTop;
-let ids = 10;
+let ids = 11;
 let resData;
 var vtable = document.getElementsByTagName("tbody")[0];
 var reccount = 10;
