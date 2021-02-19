@@ -1,103 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-  <title>Sample Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The modalalert (background) */
+.modalalert {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* modalalert Content */
+.modalalert-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalalert-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modalalert-body {padding: 2px 16px;}
+
+.modalalert-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+</style>
 </head>
 <body>
-    <div class="container-fluid">
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="id">Record ID</label>
-            <input type="recid" class="form-control" id="rid" placeholder="Record ID">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="username">Username</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-          </div>
 
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-        </div>
-        <div class="form-row">
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Add Record</button>
-        </div>
-        </div>
-      </form>
+<h2>Animated modalalert with Header and Footer</h2>
+
+<!-- Trigger/Open The modalalert -->
+<button id="modalBtn">Open modalalert</button>
+
+<!-- The modalalert -->
+<div id="modalalert" class="modalalert">
+  <!-- modalalert content -->
+  <div class="modalalert-content">
+    <div class="modalalert-header">
+      <span class="close">&times;</span>
+      <h2>modalalert Header</h2>
     </div>
-</body>
-</html>
+    <div class="modalalert-body">
+      <p id="message">Some text in the modalalert Body</p>
+    </div>
+    <div class="modalalert-footer">
+      <h3>modalalert Footer</h3>
+    </div>
+  </div>
+</div>
 
+<script>
+// Get the modalalert
+var modalalert = document.getElementById("modalalert");
 
-/* Style the header */
-.header-foot {
-  padding: 10px 16px;
-  background: #555;
-  color: #f1f1f1;
+// Get the button that opens the modalalert
+var btn = document.getElementById("modalBtn");
+
+// Get the <span> element that closes the modalalert
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modalalert 
+btn.onclick = function() {
+  modalalert.style.display = "block";
 }
 
-/* Page content */
-.content-foot {
-  padding: 16px;
+// When the user clicks on <span> (x), close the modalalert
+span.onclick = function() {
+  modalalert.style.display = "none";
 }
 
-/* The sticky class is added to the header with JS when it reaches its scroll position */
-.sticky-foot {
-  position: fixed;
-  bottom:0px;
-  width: 100%
-}
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-.sticky-foot + .content-foot {
-  padding-bottom: 51px;
-}
-
-// When the user scrolls the page, execute myFunction
-window.onscroll = function() {myFunctionfooter()};
-
-// Get the header
-var header-foot = document.getElementById("myHeader-foot");
-
-// Get the offset position of the navbar
-var sticky = header-foot.offsetBottom;
-
-// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky-foot");
-  } else {
-    header-foot.classList.remove("sticky-foot");
+// When the user clicks anywhere outside of the modalalert, close it
+window.onclick = function(event) {
+  if (event.target == modalalert) {
+    modalalert.style.display = "none";
   }
 }
+</script>
 
-
-let updateId = document.getElementById("recordId").value;
-let dataIn = JSON.parse(localStorage.getItem("dataIn"));
-const filteredRecord = dataIn.filter((data) => data.id == updateId);
-const indexOfItemToDelete = dataIn.indexOf(filteredRecord[0]);
-document.getElementById("updatename").value=dataIn[indexOfItemToDelete].name ;
-document.getElementById("updateEmail").value=dataIn[indexOfItemToDelete].email;
-document.getElementById("updateUsername").value=dataIn[indexOfItemToDelete].username;
-document.getElementById("updateCity").value=dataIn[indexOfItemToDelete].address.city;
+</body>
+</html>

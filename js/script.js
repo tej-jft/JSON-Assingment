@@ -4,9 +4,10 @@ window.onscroll = function () {
 
 var navbar = document.getElementById("navbar");
 var sticky = navbar.offsetTop;
-var ids = 11;
+let ids = 10;
 let resData;
 var vtable = document.getElementsByTagName("tbody")[0];
+var reccount = 10;
 
 function myFunction() {
   if (window.pageYOffset >= sticky) {
@@ -15,6 +16,10 @@ function myFunction() {
     navbar.classList.remove("sticky");
   }
 }
+
+countREC = () => {
+  document.getElementById("count").innerHTML = reccount;
+};
 
 let deleteRecord = () => {
   try {
@@ -27,8 +32,10 @@ let deleteRecord = () => {
   } catch (error) {
     console.log(error);
   }
+  reccount--;
   updateTableo();
   document.getElementById("id01").style.display = "none";
+  countREC();
 };
 
 let updRecord = () => {
@@ -43,9 +50,8 @@ let updRecord = () => {
   let city = document.getElementById("updateCity").value;
 
   if (name === "" || email === "" || username === "" || city === "") {
-    document.getElementById("customalert").innerHTML =
-      "Insuficient values to update record";
-    document.getElementById("customalert").style.display = "block";
+    document.getElementById("alertselector").value = "upmdl";
+    modalmessage("Insuficient values to update record");
   } else {
     dataIn[indexOfItemToUpdate].name = document.getElementById(
       "updatename"
@@ -67,14 +73,13 @@ let updRecord = () => {
 };
 
 function addRecord() {
-  let rid = ids + 1;
   let name = document.getElementById("name").value;
-  let email = document.getElementById("inputEmail4").value;
-  let username = document.getElementById("inputUsername").value;
-  let city = document.getElementById("inputCity").value;
+  let email = document.getElementById("email").value;
+  let username = document.getElementById("username").value;
+  let city = document.getElementById("city").value;
 
   let nr = {
-    id: rid,
+    id: ids,
     name: name,
     username: username,
     email: email,
@@ -83,12 +88,17 @@ function addRecord() {
     },
   };
   if (name === "" || email === "" || username === "" || city === "") {
-    alert("Insuficient values to add record");
+    document.getElementById("alertselector").value = "addmdl";
+    modalmessage("Insuficient values to add record");
   } else {
     resData.push(nr);
     document.getElementById("recform").reset();
+    reccount++;
+    ids++;
     updateTable();
   }
+  document.getElementById("addmdl").style.display = "none";
+  countREC();
 }
 
 let tabBody = () => {};
@@ -102,6 +112,8 @@ async function getData() {
       resData = data;
     })
     .catch((err) => {
+      document.getElementById("alertselector").value = "addmdl";
+      modalmessage("Insuficient values to add record");
       // Do something for an error here
       console.error(err);
     });
@@ -111,37 +123,8 @@ async function getData() {
 
 updateTable = () => {
   localStorage.setItem("dataIn", JSON.stringify(resData));
-  let revList = localStorage.getItem("dataIn");
-  let compdata = JSON.parse(revList);
-  resData = compdata;
-  vtable.innerHTML = "";
-  compdata.forEach((element) => {
-    let row = document.createElement("tr");
-    let icol = document.createElement("td");
-    let ncol = document.createElement("td");
-    let uncol = document.createElement("td");
-    let ecol = document.createElement("td");
-    let mcol = document.createElement("td");
-    let edcol = document.createElement("td");
-    let decol = document.createElement("td");
-
-    icol.innerHTML = element["id"];
-    ncol.innerHTML = element["name"];
-    uncol.innerHTML = element["username"];
-    ecol.innerHTML = element["email"];
-    mcol.innerHTML = element["address"]["city"];
-    edcol.innerHTML = `<button type='button' class='btn btn-warning' onclick='updateButtonHandler(${element["id"]})' >Edit</button>`;
-    decol.innerHTML = `<button type='button' class='btn btn-danger' onclick='deleteButtonHandler(${element["id"]})' id='${element["id"]}' >Delete</button>`;
-
-    row.appendChild(icol);
-    row.appendChild(ncol);
-    row.appendChild(uncol);
-    row.appendChild(ecol);
-    row.appendChild(mcol);
-    row.appendChild(edcol);
-    row.appendChild(decol);
-    vtable.appendChild(row);
-  });
+  updateTableo();
+  countREC();
 };
 
 updateTableo = () => {
@@ -229,3 +212,44 @@ window.onclick = (event) => {
     modal.style.display = "none";
   }
 };
+
+//For Add Modal
+//For update model
+var addmodal = document.getElementById("addmdl");
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = (event) => {
+  if (event.target == addmodal) {
+    addmodal.style.display = "none";
+  }
+};
+
+//Alert Modal
+// Get the modalalert
+var modalalert = document.getElementById("modalalert");
+
+// Get the button that opens the modalalert
+var btn = document.getElementById("modalBtn");
+
+// When the user clicks on <span> (x), close the modalalert
+document.getElementById("clo").onclick = function () {
+  modalalert.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modalalert, close it
+window.onclick = function (event) {
+  if (event.target == modalalert) {
+    modalalert.style.display = "none";
+  }
+};
+//Set message
+function modalmessage(txtmessage) {
+  document.getElementById("message").innerHTML = txtmessage;
+  modalalert.style.display = "block";
+}
+function back() {
+  modalalert.style.display = "none";
+  document.getElementById(
+    document.getElementById("alertselector").value
+  ).style.display = "block";
+}
+//End of Alert Modal

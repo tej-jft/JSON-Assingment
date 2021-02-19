@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: rgba(101, 160, 194, 0.178);
 }
 
 .header {
@@ -12,7 +13,7 @@ body {
 
 #navbar {
   overflow: hidden;
-  background-color: rgb(109, 173, 209);
+  background-color: rgba(56, 155, 221, 0.952);
   z-index: 40;
 }
 
@@ -36,8 +37,23 @@ body {
   color: white;
 }
 
+.adbtn {
+  display: flex;
+  width: 20%;
+  text-align: center;
+  right: 0;
+  position: fixed;
+  margin-top: 60px;
+  text-align: center;
+}
+.btn-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .content {
   padding: 16px;
+  padding-top: 10px;
 }
 
 .sticky {
@@ -52,11 +68,26 @@ body {
 
 table {
   margin: 40px;
-  border-top: 8px outset gray;
-  padding-bottom: 400px;
+  margin-bottom: 0px;
+  border-top: 3px outset gray;
+}
+.rcount {
+  border-top: 3px outset gray;
+  border-bottom: 3px outset gray;
+  margin-bottom: 40px;
+  padding: 15px;
+  text-align: end;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: bolder;
+}
+.dlmod {
+  width: 20%;
 }
 tr {
   padding: 20px;
+}
+p {
+  margin: 0px;
 }
 td {
   font-size: 16px;
@@ -67,12 +98,20 @@ footer {
   z-index: 40;
   background-color: rgba(56, 155, 221, 0.952);
   height: 5%;
-  color: #ddd;
+  color: rgb(10, 23, 59);
 }
 .foot-con {
-  background-color: #1c1f1c93;
   font-size: 18px;
   padding: 5px 0px;
+  float: none;
+}
+.foot-con > p {
+  width: fit-content;
+  padding: 0px auto;
+  margin: 0px auto;
+  /*background-color: #1c1f1c93;*/
+  font-weight: 300;
+  height: 100%;
 }
 
 /* Style the header */
@@ -100,12 +139,12 @@ footer {
   padding-bottom: 51px;
 }
 
-/*for Delete Moda*/
+/*for Delete Modal*/
 
 /* Set a style for all buttons */
 .mdbutton {
-  background-color: #4caf50;
-  color: rgb(10, 10, 10);
+  background-color: #23c928a9;
+  color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -131,8 +170,8 @@ footer {
 
 /* Add a color to the cancel button */
 .cancelbtn {
-  background-color: rgba(126, 115, 115, 0.945);
-  color: black;
+  background-color: rgba(90, 63, 5, 0.945);
+  color: white;
 }
 
 /* Add a color to the delete button */
@@ -152,8 +191,6 @@ footer {
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  /*width: 100%; /* Full width */
-  /*height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: #00000042;
   padding-top: 50px;
@@ -165,7 +202,7 @@ footer {
   color: aliceblue;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 40%; /* Could be more or less, depending on screen size */
+  width: 45%; /* Could be more or less, depending on screen size */
 }
 
 /* Style the horizontal ruler */
@@ -213,7 +250,7 @@ hr {
 /* Set a style for all buttons */
 .mdbutton {
   background-color: #4caf50;
-  color: rgb(10, 10, 10);
+  color: rgb(255, 255, 255);
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -240,10 +277,137 @@ hr {
 /* Add a color to the cancel button */
 .updcancelbtn {
   background-color: rgba(126, 115, 115, 0.945);
-  color: black;
+  color: white;
 }
 
 /* Add a color to the delete button */
 .updatebtn {
   background-color: rgb(67, 202, 101);
 }
+
+.btn-danger {
+  background-color: rgb(10, 23, 59);
+  border-color: rgb(10, 23, 59);
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.btn {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: 18px;
+  box-shadow: 2px 2px grey;
+}
+.dlmod {
+  width: 30%;
+}
+
+.btn-warning {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: rgb(10, 23, 59);
+  border-color: rgb(10, 23, 59);
+  color: white;
+}
+
+/*Alert Modal Sart*/
+
+/* The modalalert (background) */
+.modalalert {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 38; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* modalalert Content */
+.modalalert-content {
+  position: relative;
+  background-color: rgb(154, 194, 218);
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 35%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  border-radius: 8px;
+  border: 1px solid rgb(10, 23, 59);
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalalert-header {
+  padding: 2px 16px;
+  background-color: rgb(10, 23, 59);
+  color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.modalalert-body {
+  padding: 40px 86px;
+}
+
+.modalalert-footer {
+  padding: 10px 0px;
+  background-color: rgb(10, 23, 59);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: white;
+  right: 0;
+  margin: auto;
+  padding: auto;
+}
+.btn-light {
+  color: #000;
+}
+.inner {
+  width: fit-content;
+  margin: auto;
+  padding: auto;
+}
+/*Alert Modal End*/
