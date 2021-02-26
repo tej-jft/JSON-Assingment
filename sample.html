@@ -1,132 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-
-/* The modalalert (background) */
-.modalalert {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* modalalert Content */
-.modalalert-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modalalert-header {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-.modalalert-body {padding: 2px 16px;}
-
-.modalalert-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <title>JSON Assignment</title>
 </head>
-<body>
-
-<h2>Animated modalalert with Header and Footer</h2>
-
-<!-- Trigger/Open The modalalert -->
-<button id="modalBtn">Open modalalert</button>
-
-<!-- The modalalert -->
-<div id="modalalert" class="modalalert">
-  <!-- modalalert content -->
-  <div class="modalalert-content">
-    <div class="modalalert-header">
-      <span class="close">&times;</span>
-      <h2>modalalert Header</h2>
+<body onload="getData()"> 
+    <div id="navbar">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <a class="active" href="javascript:void(0)"><h3>JavaScript || JSON Assignment </h3></a>
+              </div>
+              <div class="col-md-6 btn-container">
+                <button class="adbtn btn btn-warning btn-block" onclick="document.getElementById('addmdl').style.display='block';">Add New Record>></button>
+              </div>
+            </div>
+        </div>
     </div>
-    <div class="modalalert-body">
-      <p id="message">Some text in the modalalert Body</p>
+
+    <div class="content">
+        <div class="table-responsive-md">
+            <table class="table container">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">City</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+        </div>
+        <div class="container-fluid rcount align-middle">
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-end">
+              <p>Record Count = <span id="count"></span></p>
+            </div>
+          </div>
+        </div>
+    </div>  
+    <!--Modal Box Delete-->
+    <div id="id01" class="modal col-md-12">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+      <form class="modal-content dlmod" >
+        <div class="mdcontain">
+          <h1>Delete Record</h1>
+          <p>Are you sure you want to delete this record?</p>
+          <input type="hidden" id="recordId" value="" />
+          <div class="clearfix">
+            <div class="container">
+              <Div class="row">
+                <div class="col-sm-2">
+                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-warning ">Cancel</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" onclick="deleteRecord()" class=" btn btn-danger " >Delete</button>
+                </div>
+              </Div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="modalalert-footer">
-      <h3>modalalert Footer</h3>
+    <!--END Modal Box Delete--> 
+    <!--Modal for updating records-->
+    <div id="upmdl" class="modal">
+      <span onclick="document.getElementById('upmdl').style.display='none'" class="close" title="Close Modal">×</span>
+      <form class="modal-content">
+        <div class="mdcontain">
+          <h1 id="addHead">Update Record</h1>
+          <p id="addPCon">Update Record and click Save</p>
+          <input type="hidden" id="upRecordId" value="" />
+          <div class="clearfix">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="updatename" placeholder="Name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control" id="updateEmail" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="updateUsername" placeholder="Username" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="updateCity" placeholder="City" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <button type="button" onclick="document.getElementById('upmdl').style.display='none'" class="updcancelbtn btn btn-basic ">Cancel</button>    
+              </div>
+              <div class="form-group col-md-6">
+                <button type="button" onclick="updRecord()" class="updatebtn btn btn-success btn-block" id="addBut">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-  </div>
-</div>
-
-<script>
-// Get the modalalert
-var modalalert = document.getElementById("modalalert");
-
-// Get the button that opens the modalalert
-var btn = document.getElementById("modalBtn");
-
-// Get the <span> element that closes the modalalert
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modalalert 
-btn.onclick = function() {
-  modalalert.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modalalert
-span.onclick = function() {
-  modalalert.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modalalert, close it
-window.onclick = function(event) {
-  if (event.target == modalalert) {
-    modalalert.style.display = "none";
-  }
-}
-</script>
-
+    <!--End Modal for updating records-->
+    <!--Modal for New records-->
+    <div id="addmdl" class="modal">
+      <span onclick="document.getElementById('addmdl').style.display='none'" class="close" title="Close Modal">×</span>
+      <form class="modal-content" id="recform">
+        <div class="mdcontain">
+          <h1>Add New Record</h1>
+          <p>Enter values and click Save</p>
+          <div class="clearfix">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="city" placeholder="City" required>
+              </div>
+            </div>
+            <div class="form-row ">
+              <div class="form-group col-md-12 buttonaddmod">
+                <button type="button" onclick="document.getElementById('addmdl').style.display='none'" class="updcancelbtn btn btn-primary" id="clb">Cancel</button>
+                <button type="button" onclick="addRecord()" class="updatebtn btn btn-success" id="addBut">Save Record</button>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--End Modal for New records-->
+    <!--Alert Modal-->
+    <div id="modalalert" class="modalalert">
+      <!-- modalalert content -->
+      <div class="modalalert-content">
+        <div class="modalalert-header">
+          <input type="hidden" value="" id="alertselector">
+          <span class="close" id="clo">&times;</span>
+          <h2>Warning Message</h2>
+        </div>
+        <div class="modalalert-body">
+          <p id="message"></p>
+        </div>
+        <div class="modalalert-footer">
+          <div class="inner">
+            <button class="btn-light d-flex justify-content-center" onclick="back()">Okay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End of Alert Modal-->
+    <!--Footer-->
+    <footer class="fixed-bottom" style="position:fixed;bottom:0;width:100%">
+        <!-- Copyright -->
+        <div class="text-center p-3 foot-con" ><p>© 2021 Copyright || JSON Assignment</p></div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 </body>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--Custom JS-->
+    <script type="text/javascript" src="./js/script.js"></script>
 </html>
